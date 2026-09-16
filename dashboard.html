@@ -6,47 +6,39 @@
     <title>Panel Clínico - Nutri FRO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Paleta de colores basada en tu imagen */
         :root {
-            --primary-dark: #0f4a33; /* Verde oscuro */
+            --primary-dark: #0f4a33;
             --bg-body: #f4f7f6;
             --text-muted: #888;
         }
         body { background-color: var(--bg-body); font-family: system-ui, -apple-system, sans-serif; }
         
-        /* Barra de navegación superior */
         .navbar-custom { background-color: var(--primary-dark); color: white; padding: 10px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .btn-logout { background-color: transparent; border: 1px solid #4a8268; color: white; border-radius: 20px; padding: 4px 15px; font-size: 0.9rem;}
         .btn-logout:hover { background-color: white; color: var(--primary-dark); }
         .btn-delete-all { background-color: #d9534f; color: white; border: none; border-radius: 20px; padding: 4px 15px; font-size: 0.9rem; margin-right: 10px;}
         
-        /* Tarjetas de formulario */
         .form-section { background-color: white; border-radius: 10px; padding: 25px; height: 100%; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
         .section-title { font-size: 1.2rem; color: #333; margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
         
-        /* Estilos de inputs y labels */
         .form-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 4px; }
         .form-control, .form-select { border-color: #e0e0e0; border-radius: 6px; background-color: #fafafa; font-size: 0.95rem; }
         .form-control:focus, .form-select:focus { border-color: var(--primary-dark); box-shadow: none; }
         
-        /* Botones principales */
         .btn-main { background-color: var(--primary-dark); color: white; font-weight: 500; border-radius: 6px; padding: 10px; border: none; }
         .btn-main:hover { background-color: #0b3625; color: white; }
         
-        /* Etiquetas del paciente (Badges) */
         .badge-info { background-color: #e6f2ed; color: var(--primary-dark); font-weight: 500; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; margin-right: 8px; display: inline-block; margin-bottom: 8px;}
         .imc-preview { font-size: 0.95rem; margin-top: 15px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
-    <!-- Protección de ruta -->
     <script>
         if (!sessionStorage.getItem('nutri_user')) {
             window.location.href = 'index.html';
         }
     </script>
 
-    <!-- Header idéntico a la imagen -->
     <nav class="navbar-custom d-flex justify-content-between align-items-center mb-4">
         <div class="fw-bold fs-5">🌐 Nutri FRO - Panel Clínico</div>
         <div class="d-flex align-items-center">
@@ -58,7 +50,7 @@
 
     <div class="container-fluid px-4">
         <div class="row">
-            <!-- COLUMNA IZQUIERDA: Registrar Paciente -->
+            <!-- COLUMNA IZQUIERDA -->
             <div class="col-lg-4 col-md-5 mb-4">
                 <div class="form-section">
                     <h4 class="section-title">Registrar Paciente</h4>
@@ -91,7 +83,6 @@
                             </div>
                         </div>
                         
-                        <!-- Cálculo de IMC en vivo -->
                         <div class="imc-preview text-muted">
                             IMC calculado: <span id="liveImc" class="fw-bold text-dark">--</span> 
                             <span id="liveDiag" class="fw-bold ms-1 text-uppercase"></span>
@@ -102,7 +93,7 @@
                 </div>
             </div>
 
-            <!-- COLUMNA DERECHA: Nueva Consulta -->
+            <!-- COLUMNA DERECHA -->
             <div class="col-lg-8 col-md-7 mb-4">
                 <div class="form-section">
                     <h4 class="section-title">Nueva Consulta</h4>
@@ -114,7 +105,6 @@
                             </select>
                         </div>
                         
-                        <!-- Etiquetas (Badges) dinámicas estilo imagen -->
                         <div id="patientBadges" class="mb-3 d-none">
                             <span class="badge-info" id="badgeEdadSexo"></span>
                             <span class="badge-info" id="badgeFisico"></span>
@@ -142,13 +132,12 @@
                             <textarea id="consPlan" class="form-control" rows="2" placeholder="Describe el plan nutricional para este periodo..." required></textarea>
                         </div>
 
-                        <button type="submit" class="btn-main w-100">Guardar Consulta</button>
+                        <button type="submit" id="btnSubmitConsulta" class="btn-main w-100">Guardar Consulta</button>
                     </form>
                 </div>
             </div>
         </div>
 
-        <!-- Fila: Historial Vivo (Requisito de la práctica) -->
         <div class="row mt-2">
             <div class="col-12">
                 <div class="form-section">
@@ -161,6 +150,7 @@
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Módulo JS -->
+    <script type="module" src="./js/app.js"></script>
 </body>
 </html>
