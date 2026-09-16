@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel - Nutri FRO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- PROTECCIÓN DE RUTA (Regla de oro 1) -->
+    <script>
+        if (!sessionStorage.getItem('nutri_user')) {
+            alert("Acceso denegado. Por favor, inicie sesión.");
+            window.location.href = 'index.html';
+        }
+    </script>
+
+    <nav class="navbar navbar-dark bg-success mb-4">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">Clínica Nutri "FRO"</span>
+            <div class="d-flex align-items-center text-white">
+                <span class="me-3">Nutriólogo en turno: <b id="displayDocName"></b></span>
+                <button class="btn btn-sm btn-danger" onclick="logout()">Cerrar Sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <!-- Columna: Registro de Pacientes -->
+            <div class="col-md-5 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">1. Pre-registro de Paciente</div>
+                    <div class="card-body">
+                        <form id="formPaciente">
+                            <div class="mb-2">
+                                <label>Nombre completo</label>
+                                <input type="text" id="patName" class="form-control form-control-sm" required>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <label>Edad</label>
+                                    <input type="number" id="patAge" class="form-control form-control-sm" required>
+                                </div>
+                                <div class="col">
+                                    <label>Peso (kg)</label>
+                                    <input type="number" step="0.1" id="patWeight" class="form-control form-control-sm" required>
+                                </div>
+                                <div class="col">
+                                    <label>Altura (m)</label>
+                                    <input type="number" step="0.01" id="patHeight" class="form-control form-control-sm" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm w-100">Guardar Paciente y Calcular IMC</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna: Consulta y Evolución -->
+            <div class="col-md-7 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-warning text-dark">2. Consulta del Día</div>
+                    <div class="card-body">
+                        <form id="formConsulta">
+                            <div class="mb-3">
+                                <label>Seleccionar Paciente (Evita duplicidad)</label>
+                                <select id="patSelect" class="form-select form-select-sm" required>
+                                    <option value="">Seleccione...</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label>Evolución médica</label>
+                                <textarea id="consEvolucion" class="form-control form-control-sm" rows="2" required></textarea>
+                            </div>
+                            <div class="mb-2">
+                                <label>Plan de Alimentación</label>
+                                <textarea id="consPlan" class="form-control form-control-sm" rows="2" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-warning btn-sm w-100">Registrar Consulta en Tiempo Real</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fila: Historial Vivo -->
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">3. Historial Cronológico del Paciente</h4>
+                <div id="historialContainer">
+                    <p class="text-muted">Seleccione un paciente arriba para ver su historial.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Principal -->
+    <script src="app.js"></script>
+</body>
+</html>
