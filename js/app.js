@@ -1,5 +1,3 @@
-// js/app.js - Lógica Principal
-
 import { obtenerPacientes, guardarPacientes, obtenerConsultas, guardarConsultas } from './db.js';
 
 let pacientes = obtenerPacientes();

@@ -24,6 +24,8 @@
                     </div>
                     <div class="card-body p-4">
                         <div class="tab-content" id="authTabsContent">
+                            
+                            <!-- PANEL 1: INICIAR SESIÓN -->
                             <div class="tab-pane fade show active" id="login-pane" role="tabpanel" aria-labelledby="login-tab">
                                 <h5 class="text-center mb-3">Bienvenido de nuevo</h5>
                                 <form id="loginForm">
@@ -36,8 +38,19 @@
                                         <input type="password" class="form-control" id="logPass" required>
                                     </div>
                                     <button type="submit" class="btn btn-success w-100">Ingresar al Panel</button>
+                                    
+                                    <div class="text-center mt-3">
+                                        <small class="text-muted">
+                                            ¿No tienes cuenta? 
+                                            <a href="#" onclick="document.getElementById('register-tab').click(); return false;" class="text-success text-decoration-none fw-bold">
+                                                Crea una aquí
+                                            </a>
+                                        </small>
+                                    </div>
                                 </form>
                             </div>
+
+                            <!-- PANEL 2: REGISTRARSE -->
                             <div class="tab-pane fade" id="register-pane" role="tabpanel" aria-labelledby="register-tab">
                                 <h5 class="text-center mb-3">Nuevo Nutriólogo</h5>
                                 <form id="registerForm">
@@ -52,6 +65,7 @@
                                     <button type="submit" class="btn btn-primary w-100">Registrar Cuenta</button>
                                 </form>
                             </div>
+
                         </div>
                     </div>
                 </div>

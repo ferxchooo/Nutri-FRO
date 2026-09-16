@@ -1,5 +1,3 @@
-// js/db.js - Módulo de conexión de datos
-
 export function obtenerPacientes() {
     return JSON.parse(localStorage.getItem('db_pacientes')) || [];
 }
